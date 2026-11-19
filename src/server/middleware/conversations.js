@@ -6,6 +6,12 @@ const db = require(`${path.dirname(__filename)}/../db.json`)
 module.exports = (req, res, next) => {
   if (/conversations/.test(req.url) && req.method === 'GET') {
     const userId = req.query?.senderId
+
+    if (!userId) {
+      res.status(200).json(db?.conversations || []);
+      return
+    }
+
     const result = db?.conversations?.filter(
       conv => conv.senderId == userId || conv.recipientId == userId
     )
