@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import { getLoggedUserId } from '../utils/getLoggedUserId'
+import { getLoggedUserId } from '../utils/UserUtils'
 import '../styles/tokens.css'
 import '../styles/globals.css'
 

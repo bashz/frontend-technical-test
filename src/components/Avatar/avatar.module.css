@@ -1,5 +1,7 @@
 :root {
-  --color-avatar: var(--color-gray-200);
+  .avatar {
+    --color-avatar: var(--color-gray-200);
+  }
 }
 
 .avatar {
@@ -8,10 +10,15 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: var(--color-avatar);
 }
 
-.avatar-user {
+.avatar img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  background: var(--color-avatar)
+}
+
+.me img {
   border: 1px solid var(--color-highlight);
 }
