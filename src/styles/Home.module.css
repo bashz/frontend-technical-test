@@ -36,18 +36,18 @@
 .description a:visited,
 .card a,
 .card a:visited {
-  color:black;
+  color: var(--color-text);
   text-decoration: underline;
 }
 
 .card:hover a,
 .card:focus a,
 .card:active a {
-  color:#ec6e24;
+  color:var(--color-primary);
 }
 
 .code {
-  background: #e1e1e1;
+  background: var(--color-grey-200);
   border-radius: 5px;
   padding: 0.3rem;
   font-size: 1.1rem;
@@ -79,8 +79,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #ec6e24;
-  border-color: #ec6e24;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .card h2 {
