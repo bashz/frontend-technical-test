@@ -1,6 +1,6 @@
-import type { ReactElement } from 'react'
-import { AvatarSkeleton } from '@/components/Avatar';
-import styles from './conversation.module.css'
+import type { ReactElement } from "react";
+import { AvatarSkeleton } from "@/components/Avatar";
+import styles from "./conversation.module.css";
 
 export const ConversationSkeleton = (): ReactElement => {
   return (

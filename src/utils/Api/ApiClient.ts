@@ -1,17 +1,17 @@
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3005/'
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3005/";
 
 export class ApiError extends Error {
   constructor(
     public status: number,
     public statusText: string,
-    public data: unknown
+    public data: unknown,
   ) {
-    super(`API Error ${status}: ${statusText}`)
-    this.name = 'ApiError'
+    super(`API Error ${status}: ${statusText}`);
+    this.name = "ApiError";
   }
 }
 
-interface RequestOptions extends Omit<RequestInit, 'body'> {
+interface RequestOptions extends Omit<RequestInit, "body"> {
   params?: Record<string, string | number | boolean | undefined>;
   body?: unknown;
 }
@@ -21,15 +21,15 @@ export class ApiClient {
   private defaultHeaders: HeadersInit;
 
   constructor(baseUrl: string, defaultHeaders: HeadersInit = {}) {
-    this.baseUrl = baseUrl.replace(/\/$/, '');
+    this.baseUrl = baseUrl.replace(/\/$/, "");
     this.defaultHeaders = {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       ...defaultHeaders,
     };
   }
 
-  private buildUrl(endpoint: string, params?: RequestOptions['params']): string {
-    const url = new URL(`${this.baseUrl}/${endpoint.replace(/^\//, '')}`);
+  private buildUrl(endpoint: string, params?: RequestOptions["params"]): string {
+    const url = new URL(`${this.baseUrl}/${endpoint.replace(/^\//, "")}`);
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
         if (value !== undefined) {
@@ -53,7 +53,7 @@ export class ApiClient {
     });
 
     // Handle empty responses (e.g., 204 No Content)
-    const isJson = response.headers.get('content-type')?.includes('application/json');
+    const isJson = response.headers.get("content-type")?.includes("application/json");
     const data = isJson ? await response.json() : await response.text();
 
     if (!response.ok) {
@@ -63,24 +63,36 @@ export class ApiClient {
     return data as T;
   }
 
-  public get<T>(endpoint: string, options?: Omit<RequestOptions, 'body' | 'method'>) {
-    return this.request<T>(endpoint, { ...options, method: 'GET' });
+  public get<T>(endpoint: string, options?: Omit<RequestOptions, "body" | "method">) {
+    return this.request<T>(endpoint, { ...options, method: "GET" });
   }
 
-  public post<T>(endpoint: string, body?: unknown, options?: Omit<RequestOptions, 'body' | 'method'>) {
-    return this.request<T>(endpoint, { ...options, method: 'POST', body });
+  public post<T>(
+    endpoint: string,
+    body?: unknown,
+    options?: Omit<RequestOptions, "body" | "method">,
+  ) {
+    return this.request<T>(endpoint, { ...options, method: "POST", body });
   }
 
-  public put<T>(endpoint: string, body?: unknown, options?: Omit<RequestOptions, 'body' | 'method'>) {
-    return this.request<T>(endpoint, { ...options, method: 'PUT', body });
+  public put<T>(
+    endpoint: string,
+    body?: unknown,
+    options?: Omit<RequestOptions, "body" | "method">,
+  ) {
+    return this.request<T>(endpoint, { ...options, method: "PUT", body });
   }
 
-  public patch<T>(endpoint: string, body?: unknown, options?: Omit<RequestOptions, 'body' | 'method'>) {
-    return this.request<T>(endpoint, { ...options, method: 'PATCH', body });
+  public patch<T>(
+    endpoint: string,
+    body?: unknown,
+    options?: Omit<RequestOptions, "body" | "method">,
+  ) {
+    return this.request<T>(endpoint, { ...options, method: "PATCH", body });
   }
 
-  public delete<T>(endpoint: string, options?: Omit<RequestOptions, 'body' | 'method'>) {
-    return this.request<T>(endpoint, { ...options, method: 'DELETE' });
+  public delete<T>(endpoint: string, options?: Omit<RequestOptions, "body" | "method">) {
+    return this.request<T>(endpoint, { ...options, method: "DELETE" });
   }
 }
 

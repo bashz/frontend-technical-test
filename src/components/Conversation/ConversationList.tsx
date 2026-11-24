@@ -1,23 +1,17 @@
-import type { ReactElement } from 'react';
-import type { Conversation } from '@/types/conversation';
-import { ConversationItem } from './ConversationItem'
-import styles from './conversation.module.css'
-import { loggedUserId } from '@/pages/_app';
+import type { ReactElement } from "react";
+import type { Conversation } from "@/types/conversation";
+import { ConversationItem } from "./ConversationItem";
+import styles from "./conversation.module.css";
 
 interface ConversationListProps {
-  conversations: Conversation[],
-  loggedUserId: number,
+  conversations: Conversation[];
 }
 
-export const ConversationList = ({
-  conversations,
-}: ConversationListProps): ReactElement => {
+export const ConversationList = ({ conversations }: ConversationListProps): ReactElement => {
   return (
     <ul className={styles.conversationList}>
       {conversations.map((conversation) => {
-        return (
-          <ConversationItem key={conversation.id} conversation={conversation} loggedUserId={loggedUserId}/>
-        );
+        return <ConversationItem key={conversation.id} conversation={conversation} />;
       })}
     </ul>
   );

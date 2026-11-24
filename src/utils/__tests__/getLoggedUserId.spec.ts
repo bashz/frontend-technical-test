@@ -1,9 +1,9 @@
-import { getLoggedUserId } from '../UserUtils'
+import { getLoggedUserId } from "../UserUtils";
 
-describe('getLoggedUserId', () => {
-  it('should return logged user id', () => {
-    const expected = 1
+describe("getLoggedUserId", () => {
+  it("should return logged user id", () => {
+    const expected = 1;
 
-    expect(getLoggedUserId()).toEqual(expected)
-  })
-})
+    expect(getLoggedUserId()).toEqual(expected);
+  });
+});

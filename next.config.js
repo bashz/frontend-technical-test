@@ -8,9 +8,9 @@ const nextConfig = {
   },
   // Modern i18n config
   i18n: {
-    locales: ['fr'],
-    defaultLocale: 'fr',
-  }
-}
+    locales: ["fr"],
+    defaultLocale: "fr",
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

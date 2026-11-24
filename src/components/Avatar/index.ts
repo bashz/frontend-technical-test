@@ -1,6 +1,6 @@
-import { Avatar } from './Avatar'
-import { AvatarSkeleton } from './AvatarSkeleton'
+import { Avatar } from "./Avatar";
+import { AvatarSkeleton } from "./AvatarSkeleton";
 
-export { AvatarSkeleton }
+export { AvatarSkeleton };
 
-export default Avatar
+export default Avatar;
