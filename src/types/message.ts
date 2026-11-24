@@ -5,3 +5,8 @@ export interface Message {
   timestamp: number
   body: string
 }
+
+export interface UserMessage extends Message {
+  isLast: boolean
+  username: string
+}
