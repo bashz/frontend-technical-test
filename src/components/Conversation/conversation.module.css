@@ -1,0 +1,24 @@
+:root {
+  .conversations {
+    --color-conversations: var(--color-gray-200);
+  }
+}
+
+.conversation {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.conversation img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  background: var(--color-avatar)
+}
+
+.me img {
+  border: 1px solid var(--color-highlight);
+}

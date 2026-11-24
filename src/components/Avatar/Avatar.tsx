@@ -1,18 +1,18 @@
 import type { ReactElement } from 'react';
-import { getUserName, isMe } from '../../utils/UserUtils';
 import styles from './avatar.module.css';
-import { User } from '@/types/user';
 
 interface AvatarProps {
-  user: User;
+  username: string
+  isCurrentUser: boolean
 }
 
 export const Avatar = ({
-  user,
+  username,
+  isCurrentUser = false,
 }: AvatarProps): ReactElement => {
   return (
-    <span className={`${styles.avatar} ${isMe(user) ? styles.me : ''}`}>
-      <img src={`https://ui-avatars.com/api/?name=${getUserName(user)}`} alt={getUserName(user)} />
+    <span className={`${styles.avatar} ${isCurrentUser ? styles.currentUser : ''}`}>
+      <img src={`https://ui-avatars.com/api/?name=${username}`} alt={username} />
     </span>
   );
 };
