@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { use } from "react";
 import { getAllConversations } from "@/utils/Api";
-import ConversationList from "@/components/Conversation";
+import { ConversationList } from "./ConversationList";
 import { sortConversationsByDate } from "@/utils/ConversationUtils";
 
 async function getSortedConversations() {
@@ -16,7 +16,7 @@ async function getSortedConversations() {
 
 const conversationsPromise = getSortedConversations();
 
-export default function Conversations(): ReactElement {
+export function Conversations(): ReactElement {
   const conversations = use(conversationsPromise);
 
   return <ConversationList conversations={conversations} />;

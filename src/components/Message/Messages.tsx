@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import { use } from "react";
-import MessageList from "@/components/Message";
+import { MessageList } from "./MessageList";
 import { UserMessage } from "@/types/message";
 
 interface MessagesProps {
@@ -8,7 +8,7 @@ interface MessagesProps {
   lastMessageId: number;
 }
 
-export default function Messages({
+export function Messages({
   userMessagesPromise,
   lastMessageId,
 }: MessagesProps): ReactElement {

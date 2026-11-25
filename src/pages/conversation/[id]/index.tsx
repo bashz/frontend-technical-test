@@ -1,10 +1,10 @@
 import type { ReactElement } from "react";
 import { useState, Suspense } from "react";
 import { useRouter } from "next/router";
-import { MessageForm, MessageSkeleton } from "@/components/Message";
+import Messages, { MessageForm, MessageSkeleton } from "@/components/Message";
 import { Message } from "@/types/message";
 import { getAllMessages } from "@/utils/Api/Message";
-import Layout, { Messages } from "@/components/Layout";
+import Layout from "@/components/Layout";
 import { getLoggedUserId } from "@/utils/UserUtils";
 import { fetchConversation } from "@/utils/Api";
 import { toUserMessage } from "@/utils/MessageUtils";
