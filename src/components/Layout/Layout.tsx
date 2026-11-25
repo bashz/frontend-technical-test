@@ -1,6 +1,5 @@
 import type { ReactElement } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Logo from "@/assets/lbc-logo.webp";
 import Head from "next/head";
 import styles from "./layout.module.css";
@@ -9,7 +8,7 @@ export default function Layout({ children }: { children: ReactElement }): ReactE
   const year = new Date().getFullYear();
 
   return (
-    <div className={styles.container}>
+    <div className={styles.layout}>
       <Head>
         <title>Frontend Technical test - Leboncoin</title>
         <meta
@@ -18,11 +17,11 @@ export default function Layout({ children }: { children: ReactElement }): ReactE
         />
       </Head>
 
-      <main className={styles.main}>
+      <header className={styles.header}>
         <Image src={Logo} alt="Leboncoin Frontend Team" width={80} height={25} priority />
+      </header>
 
-        {children}
-      </main>
+      <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>&copy; leboncoin - {year}</footer>
     </div>

@@ -1,56 +1,53 @@
 import type { ReactElement } from "react";
 import { useState, Suspense } from "react";
 import { useRouter } from "next/router";
-import { MessageSkeleton } from "@/components/Message";
+import { MessageForm, MessageSkeleton } from "@/components/Message";
 import { Message } from "@/types/message";
-import { sendMessage } from "@/utils/Api/Message";
-import dayjs from "dayjs";
+import { getAllMessages } from "@/utils/Api/Message";
 import Layout, { Messages } from "@/components/Layout";
 import { getLoggedUserId } from "@/utils/UserUtils";
+import { fetchConversation } from "@/utils/Api";
+import { toUserMessage } from "@/utils/MessageUtils";
 
 const authorId = getLoggedUserId();
 
+const getUserMessages = async (conversationId: number) => {
+  try {
+    const [conversations, messages] = await Promise.all([
+      fetchConversation(conversationId),
+      getAllMessages(conversationId),
+    ]);
+    const conversation = conversations[0];
+
+    return toUserMessage(messages, conversation);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 export default function Home(): ReactElement {
+  const [lastMessageId, setLastMessageId] = useState(0);
   const router = useRouter();
   const conversationId = router.query.id;
+  console.log(conversationId);
 
-  const [newMessage, setNewMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [lastMessageId, setLastMessageId] = useState(0);
+  let userMessagesPromise = getUserMessages(conversationId);
 
-  async function handleSend(e: FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-
-    const message: Message = {
-      authorId,
-      body: newMessage.trim(),
-      conversationId,
-      timestamp: dayjs().unix(),
-    };
-
-    try {
-      const sentMessage = await sendMessage(message);
-      setLastMessageId(sentMessage.id);
-      setNewMessage("");
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  }
+  const onSend = (message: Message) => {
+    setLastMessageId(message.id);
+  };
 
   return (
     <Layout>
-      <Suspense fallback={<MessageSkeleton />}>
-        <Messages conversationId={conversationId} lastMessageId={lastMessageId} />
-      </Suspense>
-      <form onSubmit={handleSend}>
-        <textarea type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
-        <button type="submit" disabled={loading}>
-          {loading ? "Sending..." : "Send"}
-        </button>
-      </form>
+      {router.isReady && (
+        <>
+          <Suspense fallback={<MessageSkeleton />}>
+            <Messages userMessagesPromise={userMessagesPromise} lastMessageId={lastMessageId} />
+          </Suspense>
+
+          <MessageForm authorId={authorId} conversationId={conversationId} onSend={onSend} />
+        </>
+      )}
     </Layout>
   );
 }
