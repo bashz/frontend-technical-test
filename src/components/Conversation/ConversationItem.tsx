@@ -25,7 +25,7 @@ export function ConversationItem({ conversation }: ConversationItemProps): React
     <li className={styles.conversationItem}>
       <Link href={`/conversation/${conversation.id}`} className={styles.conversationDetails}>
         <div className={styles.conversationHeader}>
-          <Avatar username={participant} />
+          <Avatar username={participant} decorative />
           <span className={styles.conversationName}>{participant}</span>
         </div>
         <time className={styles.conversationTime} dateTime={dayjs(timestamp)}>

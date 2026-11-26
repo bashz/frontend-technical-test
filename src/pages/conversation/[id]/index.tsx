@@ -42,7 +42,7 @@ export default function Home(): ReactElement {
     <Layout>
       {router.isReady && (
         <>
-          <div className={styles.messageContainer}>
+          <div className={styles.messageContainer} role="region" aria-label="Conversation">
             <Suspense fallback={<MessageSkeleton />}>
               <Messages userMessagesPromise={userMessagesPromise} lastMessageId={lastMessageId} />
             </Suspense>

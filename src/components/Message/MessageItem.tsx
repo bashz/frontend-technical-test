@@ -22,9 +22,13 @@ export function MessageItem({ message }: MessageItemProps): ReactElement {
       className={`${styles.messageItem} ${message.authorId === loggedUserId ? styles.userMessage : styles.contactMessage}`}
     >
       <div className={styles.messageAvatar}>
-        {message.isLast ? <Avatar username={message.username} /> : ""}
+        {message.isLast ? <Avatar username={message.username} decorative /> : ""}
       </div>
-      <div className={styles.messageContent}>
+      <div
+        className={styles.messageContent}
+        role="group"
+        aria-label={`Message from ${message.username}`}
+      >
         <p className={styles.messageBubble}>{message.body}</p>
         <time className={styles.messageTime} dateTime={dayjs(timestamp)}>
           {dayjs().to(dayjs(timestamp))}

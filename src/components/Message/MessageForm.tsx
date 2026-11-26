@@ -38,12 +38,18 @@ export function MessageForm({ authorId, conversationId, onSend }: MessagesFormPr
   }
 
   return (
-    <form className={styles.messageForm} onSubmit={handleSend}>
+    <form
+      className={styles.messageForm}
+      onSubmit={handleSend}
+      aria-label="Send a message"
+      aria-busy={loading}
+    >
       <textarea
         className={styles.messageInput}
         type="text"
         value={newMessage}
         onChange={(e) => setNewMessage(e.target.value)}
+        aria-label="Message"
       />
       <button className={styles.sendButton} type="submit" disabled={loading}>
         {loading ? "Sending..." : "Send"}

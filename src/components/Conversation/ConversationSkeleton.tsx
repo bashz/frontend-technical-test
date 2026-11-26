@@ -4,31 +4,36 @@ import styles from "./conversation.module.css";
 
 export const ConversationSkeleton = (): ReactElement => {
   return (
-    <ul className={`${styles.conversationSkeleton} ${styles.conversationList}`}>
-      <li className={styles.skeletonItem}>
-        <div className={styles.conversationDetails}>
-          <div className={styles.conversationHeader}>
-            <AvatarSkeleton />
-            <div className={`${styles.skeletonLine} ${styles.skeletonLineMd}`}></div>
+    <div role="status" aria-label="Loading conversations">
+      <ul
+        className={`${styles.conversationSkeleton} ${styles.conversationList}`}
+        aria-hidden="true"
+      >
+        <li className={styles.skeletonItem}>
+          <div className={styles.conversationDetails}>
+            <div className={styles.conversationHeader}>
+              <AvatarSkeleton />
+              <div className={`${styles.skeletonLine} ${styles.skeletonLineMd}`}></div>
+            </div>
           </div>
-        </div>
-      </li>
-      <li className={styles.skeletonItem}>
-        <div className={styles.conversationDetails}>
-          <div className={styles.conversationHeader}>
-            <AvatarSkeleton />
-            <div className={styles.skeletonLine}></div>
+        </li>
+        <li className={styles.skeletonItem}>
+          <div className={styles.conversationDetails}>
+            <div className={styles.conversationHeader}>
+              <AvatarSkeleton />
+              <div className={styles.skeletonLine}></div>
+            </div>
           </div>
-        </div>
-      </li>
-      <li className={styles.skeletonItem}>
-        <div className={styles.conversationDetails}>
-          <div className={styles.conversationHeader}>
-            <AvatarSkeleton />
-            <div className={`${styles.skeletonLine} ${styles.skeletonLineSm}`}></div>
+        </li>
+        <li className={styles.skeletonItem}>
+          <div className={styles.conversationDetails}>
+            <div className={styles.conversationHeader}>
+              <AvatarSkeleton />
+              <div className={`${styles.skeletonLine} ${styles.skeletonLineSm}`}></div>
+            </div>
           </div>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   );
 };

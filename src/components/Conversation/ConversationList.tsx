@@ -9,7 +9,7 @@ interface ConversationListProps {
 
 export const ConversationList = ({ conversations }: ConversationListProps): ReactElement => {
   return (
-    <ul className={styles.conversationList}>
+    <ul className={styles.conversationList} aria-label="Conversations">
       {conversations.map((conversation) => {
         return <ConversationItem key={conversation.id} conversation={conversation} />;
       })}
