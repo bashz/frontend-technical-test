@@ -2,8 +2,8 @@ import type { ReactElement } from "react";
 import Avatar from "@/components/Avatar";
 import type { UserMessage } from "@/types/message";
 import styles from "./message.module.css";
-import * as dayjs from "dayjs";
-import * as relativeTime from "dayjs/plugin/relativeTime";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import { getLoggedUserId } from "@/utils/UserUtils";
 
 dayjs.extend(relativeTime);

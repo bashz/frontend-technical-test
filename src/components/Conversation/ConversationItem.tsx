@@ -3,8 +3,8 @@ import Link from "next/link";
 import Avatar from "@/components/Avatar";
 import type { Conversation } from "@/types/conversation";
 import styles from "./conversation.module.css";
-import * as dayjs from "dayjs";
-import * as relativeTime from "dayjs/plugin/relativeTime";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import { isCurrentUser } from "@/utils/UserUtils";
 
 dayjs.extend(relativeTime);
