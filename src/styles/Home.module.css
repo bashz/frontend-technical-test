@@ -7,6 +7,12 @@
   align-items: center;
 }
 
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
 .main {
   padding: 4rem 1rem;
   flex: 1;
@@ -112,9 +118,19 @@
   align-items: center;
 }
 
+@media (max-width: 1024px) {
+  .messageContainer {
+    width: 75%;
+  }
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .messageContainer {
+    width: 100%;
   }
 }

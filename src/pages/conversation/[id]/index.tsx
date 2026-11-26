@@ -8,6 +8,7 @@ import Layout from "@/components/Layout";
 import { getLoggedUserId } from "@/utils/UserUtils";
 import { fetchConversation } from "@/utils/Api";
 import { toUserMessage } from "@/utils/MessageUtils";
+import styles from "@/styles/Home.module.css";
 
 const authorId = getLoggedUserId();
 
@@ -41,11 +42,13 @@ export default function Home(): ReactElement {
     <Layout>
       {router.isReady && (
         <>
-          <Suspense fallback={<MessageSkeleton />}>
-            <Messages userMessagesPromise={userMessagesPromise} lastMessageId={lastMessageId} />
-          </Suspense>
+          <div className={styles.messageContainer}>
+            <Suspense fallback={<MessageSkeleton />}>
+              <Messages userMessagesPromise={userMessagesPromise} lastMessageId={lastMessageId} />
+            </Suspense>
 
-          <MessageForm authorId={authorId} conversationId={conversationId} onSend={onSend} />
+            <MessageForm authorId={authorId} conversationId={conversationId} onSend={onSend} />
+          </div>
         </>
       )}
     </Layout>

@@ -22,11 +22,15 @@ export function ConversationItem({ conversation }: ConversationItemProps): React
   console.log(conversation, participant, timestamp, 1795443315897);
 
   return (
-    <li>
-      <Link href={`/conversation/${conversation.id}`}>
-        <Avatar username={participant} />
-        <span>{participant}</span>
-        <time dateTime={dayjs(timestamp)}>{dayjs().to(dayjs(timestamp))}</time>
+    <li className={styles.conversationItem}>
+      <Link href={`/conversation/${conversation.id}`} className={styles.conversationDetails}>
+        <div className={styles.conversationHeader}>
+          <Avatar username={participant} />
+          <span className={styles.conversationName}>{participant}</span>
+        </div>
+        <time className={styles.conversationTime} dateTime={dayjs(timestamp)}>
+          {dayjs().to(dayjs(timestamp))}
+        </time>
       </Link>
     </li>
   );

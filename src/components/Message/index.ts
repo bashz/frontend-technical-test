@@ -4,6 +4,6 @@ import { MessageForm } from "./MessageForm";
 import { MessageSkeleton } from "./MessageSkeleton";
 import { Messages } from "./Messages";
 
-export { MessageItem, MessageSkeleton, MessageForm, MessageList};
+export { MessageItem, MessageSkeleton, MessageForm, MessageList };
 
 export default Messages;

@@ -17,4 +17,7 @@
   --color-background: var(--color-white);
   --color-text: var(--color-black);
   --color-highlight: var(--color-primary);
+
+  --color-primary-light: #f99860;
+  --color-primary-lighter: #fac3a4;
 }

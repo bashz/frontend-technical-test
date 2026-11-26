@@ -1,24 +1,160 @@
 :root {
-  .conversations {
-    --color-conversations: var(--color-gray-200);
+  .conversationList {
+    --bg-conversation-item: var(--color-primary-lighter);
+    --highlight-conversation-item: var(--color-primary-light);
   }
 }
 
-.conversation {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-}
-
-.conversation img {
+.conversationList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
   width: 100%;
-  height: auto;
-  border-radius: 50%;
-  background: var(--color-avatar);
+  padding: 0 6rem;
+  margin: 0;
+  list-style: none;
 }
 
-.me img {
-  border: 1px solid var(--color-highlight);
+.skeletonItem,
+.conversationItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+  padding: 0.75rem;
+  color: inherit;
+  text-align: right;
+  background: var(--bg-conversation-item);
+  border: 0;
+  border-radius: 0.5rem;
+}
+
+.conversationItem {
+  cursor: pointer;
+}
+
+.conversationItem:hover,
+.conversationItem:focus-visible {
+  background-color: var(--highlight-conversation-item);
+}
+
+.conversationItem:hover .conversationTime,
+.conversationItem:focus-visible .conversationTime {
+  color: var(--color-grey-900);
+}
+
+.conversationItem:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+.conversationDetails {
+  flex: 1;
+  min-width: 0;
+}
+
+.conversationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.7rem;
+  color: var(--color-grey-800);
+}
+
+.conversationItem:hover .conversationHeader,
+.conversationItem:focus-visible .conversationHeader {
+  color: var(--color-grey-950);
+}
+
+.conversationName,
+.conversationPreview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.conversationName {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.conversationTime {
+  flex: 0 0 auto;
+  color: var(--color-grey-700);
+  font-size: 0.75rem;
+}
+
+.conversationSkeleton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.skeletonAvatar,
+.skeletonLine {
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: conversationShimmer 1.4s ease-in-out infinite;
+}
+
+.skeletonAvatar {
+  flex: 0 0 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+}
+
+.skeletonDetails {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeletonLine {
+  display: block;
+  width: 12rem;
+  height: 1.25rem;
+  border-radius: 999px;
+}
+
+.skeletonLineLg {
+  width: 16rem;
+}
+
+.skeletonLineMd {
+  width: 8rem;
+}
+
+.skeletonLineSm {
+  width: 4rem;
+}
+
+@keyframes conversationShimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonLine {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .conversationList {
+    gap: 1rem;
+    padding: 0 4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .conversationList {
+    gap: 0.75rem;
+    padding: 0 2rem;
+  }
 }

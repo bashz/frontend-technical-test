@@ -1,6 +1,6 @@
 :root {
   .avatar {
-    --color-avatar: var(--color-gray-200);
+    --color-avatar: var(--color-grey-200);
   }
 }
 
@@ -15,6 +15,13 @@
 .avatar img {
   width: 100%;
   height: auto;
+  border-radius: 50%;
+  background: var(--color-avatar);
+}
+
+.placeholder {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--color-avatar);
 }

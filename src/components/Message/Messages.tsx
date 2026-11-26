@@ -8,10 +8,7 @@ interface MessagesProps {
   lastMessageId: number;
 }
 
-export function Messages({
-  userMessagesPromise,
-  lastMessageId,
-}: MessagesProps): ReactElement {
+export function Messages({ userMessagesPromise, lastMessageId }: MessagesProps): ReactElement {
   const messages = use(userMessagesPromise);
 
   return <MessageList messages={messages} />;

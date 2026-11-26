@@ -1,24 +1,187 @@
-:root {
-  .messages {
-    --color-messages: var(--color-gray-200);
+.messageForm {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.messageInput {
+  flex: 1;
+  min-height: 2.75rem;
+  max-height: 9rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 1.25rem;
+  outline: none;
+  resize: vertical;
+  font: inherit;
+}
+
+.messageInput:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 15%);
+}
+
+.sendButton {
+  flex: none;
+  padding: 0.75rem 1.25rem;
+  border: 0;
+  border-radius: 1.25rem;
+  background: #4f46e5;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sendButton:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.sendButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.messageList {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.messageItem {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  max-width: 80%;
+}
+
+.messageItem.userMessage {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.messageItem.contactMessage {
+  align-self: flex-start;
+}
+
+.messageAvatar {
+  width: 2rem;
+  height: 2rem;
+}
+
+.messageContent {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.messageBubble {
+  padding: 0.7rem 1rem;
+  border-radius: 1.15rem;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.userMessage .messageBubble {
+  border-bottom-right-radius: 0.35rem;
+  background: #4f46e5;
+  color: #fff;
+}
+
+.contactMessage .messageBubble {
+  border-bottom-left-radius: 0.35rem;
+  background: #959cab;
+  color: #f3f4f6;
+}
+
+.messageTime {
+  margin-top: 0.3rem;
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.userMessage .messageTime {
+  text-align: left;
+}
+
+.contactMessage .messageTime {
+  text-align: right;
+}
+
+.messageSkeleton {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  width: min(70%, 24rem);
+  animation: messagePulse 1.5s ease-in-out infinite;
+}
+
+.messageSkeleton.userSkeleton {
+  flex-direction: row-reverse;
+  align-self: flex-end;
+}
+
+.skeletonAvatar,
+.skeletonBubble,
+.skeletonTime {
+  background: #e5e7eb;
+}
+
+.skeletonAvatar {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.skeletonContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.skeletonBubble {
+  width: 100%;
+  height: 3rem;
+  border-radius: 1rem;
+}
+
+.skeletonTime {
+  width: 4rem;
+  height: 0.65rem;
+  border-radius: 1rem;
+}
+
+@keyframes messagePulse {
+  50% {
+    opacity: 0.55;
   }
 }
 
-.message {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
+@media (max-width: 600px) {
+  .messageItem {
+    max-width: 92%;
+  }
+
+  .messageForm {
+    padding: 0.75rem;
+  }
+
+  .messageAvatar {
+    display: none;
+  }
 }
 
-.message img {
-  width: 100%;
-  height: auto;
-  border-radius: 50%;
-  background: var(--color-avatar);
-}
-
-.me img {
-  border: 1px solid var(--color-highlight);
+@media (prefers-reduced-motion: reduce) {
+  .messageSkeleton {
+    animation: none;
+  }
 }

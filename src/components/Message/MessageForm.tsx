@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { useState } from "react";
 import { Message } from "@/types/message";
+import styles from "./message.module.css";
 import dayjs from "dayjs";
 import { sendMessage } from "@/utils/Api/Message";
 
@@ -37,9 +38,14 @@ export function MessageForm({ authorId, conversationId, onSend }: MessagesFormPr
   }
 
   return (
-    <form onSubmit={handleSend}>
-      <textarea type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
-      <button type="submit" disabled={loading}>
+    <form className={styles.messageForm} onSubmit={handleSend}>
+      <textarea
+        className={styles.messageInput}
+        type="text"
+        value={newMessage}
+        onChange={(e) => setNewMessage(e.target.value)}
+      />
+      <button className={styles.sendButton} type="submit" disabled={loading}>
         {loading ? "Sending..." : "Send"}
       </button>
     </form>

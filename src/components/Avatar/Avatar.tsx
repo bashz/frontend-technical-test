@@ -7,9 +7,12 @@ interface AvatarProps {
 }
 
 export const Avatar = ({ username, isCurrentUser = false }: AvatarProps): ReactElement => {
+  let avatarUrl = `https://ui-avatars.com/api/?name=${username}`;
+  if (isCurrentUser) avatarUrl = `{avatarUrl}&color=ec6e24`;
+
   return (
-    <span className={`${styles.avatar} ${isCurrentUser ? styles.currentUser : ""}`}>
-      <img src={`https://ui-avatars.com/api/?name=${username}`} alt={username} />
-    </span>
+    <div className={`${styles.avatar} ${isCurrentUser ? styles.currentUser : ""}`}>
+      <img src={avatarUrl} alt={username} />
+    </div>
   );
 };
